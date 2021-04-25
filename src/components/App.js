@@ -1,16 +1,17 @@
 import React from 'react';
 
+import styled from 'styled-components';
+
 import Header from './Header';
 import AppBody from './AppBody';
 
-import './App.css';
-
 export default function App() {
   return (
-    <div className="app">
+    <AppContainer>
       <Header />
       <AppBody />
-    </div>
+    </AppContainer>
   );
 }
 
+const AppContainer = styled.div``;
