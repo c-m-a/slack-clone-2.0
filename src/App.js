@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-function App() {
+export default function App() {
   return (
     <div className="app">
       <h1>Let's Build Slack Clone</h1>
@@ -9,4 +9,3 @@ function App() {
   );
 }
 
-export default App;

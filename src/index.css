@@ -8,6 +8,10 @@
           box-sizing: inherit;
 }
 
+:root {
+  --slack-color: #3f0f40;
+}
+
 html {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -16,6 +20,7 @@ html {
 }
 
 body {
+  overflow: hidden;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.6rem; /* 16px  1.6 * font-size = 10px */
 }
