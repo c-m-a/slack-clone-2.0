@@ -9,12 +9,15 @@
 }
 
 :root {
+  --slack-color: #350d36;
   --header-color: #d6ced6;
-  --header-bg-color: #350d36;
+  --header-bg-color: var(--slack-color);
   --header-search-bg-color: #431e44;
   --header-search-border-bg: #684a68;
+  --online-color: green;
   --search-input-color: #d9d2d9;
-  --sidebar-bg: #3f0e40;
+  --sidebar-header-border-color: #522653;
+  --sidebar-bg-color: #3f0e40;
   --sidebar-color: white;
 }
 
