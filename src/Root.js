@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import App from './App';
+import App from './components/App';
 
 export default function Root() {
   return (
