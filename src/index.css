@@ -10,7 +10,10 @@
 
 :root {
   --header-color: #d6ced6;
-  --header-bg: #350d36;
+  --header-bg-color: #350d36;
+  --header-search-bg-color: #431e44;
+  --header-search-border-bg: #684a68;
+  --search-input-color: #d9d2d9;
   --sidebar-bg: #3f0e40;
   --sidebar-color: white;
 }
