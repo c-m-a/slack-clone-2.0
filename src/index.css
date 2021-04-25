@@ -9,7 +9,10 @@
 }
 
 :root {
-  --slack-color: #3f0f40;
+  --header-color: #d6ced6;
+  --header-bg: #350d36;
+  --sidebar-bg: #3f0e40;
+  --sidebar-color: white;
 }
 
 html {
