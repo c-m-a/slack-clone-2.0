@@ -14,4 +14,8 @@ export default function App() {
   );
 }
 
-const AppContainer = styled.div``;
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;

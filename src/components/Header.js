@@ -33,7 +33,6 @@ export default function Header() {
 
 const HeaderContainer = styled.div`
   display: flex;
-  position: fixed;
   width: 100%;
   align-items: center;
   background-color: var(--header-bg-color);

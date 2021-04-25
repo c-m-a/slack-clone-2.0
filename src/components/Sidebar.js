@@ -19,6 +19,7 @@ export default function Sidebar() {
 
 const SidebarContainer = styled.div`
   width: 26rem;
+  height: 100%;
   color: var(--sidebar-color);
   background-color: var(--sidebar-bg);
 `;
