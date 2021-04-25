@@ -8,7 +8,7 @@ export default function Header() {
     <HeaderContainer>
       <HeaderLeft>
         <AccessTimeIcon
-          style={{ color: '#d6ced6', width: '2.2rem', height: '2.2rem' }}
+          style={{ color: 'var(--header-color)', width: '2.2rem', height: '2.2rem' }}
         />
       </HeaderLeft>
 
@@ -20,7 +20,7 @@ export default function Header() {
 
       <HeaderRight>
         <HelpOutlineIcon
-          style={{ color: '#d6ced6', width: '2.2rem', height: '2.2rem' }}
+          style={{ color: 'var(--header-color)', width: '2.2rem', height: '2.2rem' }}
         />
         <HeaderAvatar
           variant="rounded"
@@ -36,8 +36,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   width: 100%;
   align-items: center;
-  background-color: var(--slack-color);
-  color: white;
+  background-color: var(--header-bg-color);
   height: 3.8rem;
 `;
 
@@ -45,6 +44,8 @@ const HeaderLeft = styled.div`
   flex: .485;
   display: flex;
   align-items: center;
+
+  min-width: 13rem;
 
   > .MuiSvgIcon-root {
     margin-left: auto;
@@ -65,10 +66,9 @@ const HeaderAvatar = styled(Avatar)`
 const HeaderSearch = styled.div`
   opacity: 1;
   border-radius: .6rem;
-  background-color: #421f44;
+  background-color: var(--header-search-bg-color);
   padding: .1rem .5rem;
-  color: gray;
-  border: .1rem #684a68 solid;
+  border: .1rem var(--header-search-border-bg) solid;
   height: 2.4rem;
   max-width: 50rem;
   width: 100%;
@@ -77,21 +77,25 @@ const HeaderSearch = styled.div`
     background-color: transparent;
     border: none;
     width: 100%;
-    color: #d9d2d9;
+    color: var(--search-input-color);
     outline: 0;
 
     /* Chrome, Firefox, Opera, Safari 10.1+ and Edge */
     ::placeholder,
     ::-ms-input-placeholder {
-      color: #d9d2d9;
+      color: var(--search-input-color);
     }
 
     /* FireFox */
     ::placeholder {
       opacity: 1;
     }
+
   }
 
+  @media screen and (max-width: 1070px) {
+    max-width: 32rem;
+  }
 `;
 
 const HeaderRight = styled.div`
@@ -99,5 +103,6 @@ const HeaderRight = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-width: 18rem;
   padding: 0 1.6rem;
 `;
