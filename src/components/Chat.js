@@ -8,14 +8,28 @@ import ChatForm from './ChatForm';
 import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import { db } from '../firebase';
+
 export default function Chat() {
   const roomId = useSelector(selectRoomId);
+  const [roomDetails] = useDocument(
+    roomId && db.collection('rooms').doc(roomId)
+  );
+
+  const [roomMessages] = useDocument(
+    roomId &&
+    db.collection('rooms')
+      .doc(roomId)
+      .collection('messages')
+      .orderBy('timestamp', 'asc')
+  );
 
   return (
     <ChatContainer>
       <ChatHeader>
         <HeaderLeft>
-          <h4># Room Name</h4>
+          <h4>#{roomDetails?.data().name}</h4>
           <StarBorderOutlinedIcon />
         </HeaderLeft>
         <HeaderRight>
@@ -27,6 +41,7 @@ export default function Chat() {
       </ChatMessages>
       <ChatForm
         channelId={roomId}
+        channelName={roomDetails?.data().name}
       />
     </ChatContainer>
   );

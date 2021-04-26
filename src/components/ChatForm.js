@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { useState } from 'react';
 
-import { Button } from '@material-ui/core';
+import styled from 'styled-components';
 
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
@@ -18,11 +18,44 @@ import TextFormatIcon from '@material-ui/icons/TextFormat';
 import SendIcon from '@material-ui/icons/Send';
 import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 
+import { db } from '../firebase';
+import firebase from 'firebase';
+
 export default function ChatForm({ channelName, channelId }) {
+  const [input , setInput] = useState('');
+
+  const sendMessage = e => {
+    e.preventDefault();   // Prevents refresh
+
+    if (!channelId) {
+      return false;
+    }
+
+    db.collection('rooms')
+      .doc(channelId)
+      .collection('messages')
+      .add({
+        message: input,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        user: 'Cma',
+        userImage: null
+      })
+      .then(() => {
+        console.log(`Message saved!!`);
+      })
+      .catch(err => console.error(err));
+
+    setInput('');
+  };
+
   return (
     <ChatFormContainer>
-      <form>
-        <input placeholder={`Message #{$channelName}`} />
+      <form onSubmit={sendMessage}>
+        <input
+          value={input}
+          placeholder={`Message #${channelName}`}
+          onChange={e => setInput(e.target.value)}
+        />
         <ChatIcons>
           <ChatIconsLeft>
             <CodeIcon />
@@ -41,7 +74,9 @@ export default function ChatForm({ channelName, channelId }) {
             <AlternateEmailIcon />
             <InsertEmoticonIcon />
             <AttachFileIcon />
-            <SendIcon />
+            <SendIcon
+              onClick={sendMessage}
+            />
           </ChatIconsRight>
         </ChatIcons>
       </form>
