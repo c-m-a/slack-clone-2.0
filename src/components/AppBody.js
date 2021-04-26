@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 import Sidebar from './Sidebar';
+import Chat from './Chat';
 
 export default function AppBody() {
   return (
     <AppBodyContainer>
       <Sidebar />
+      <Chat />
     </AppBodyContainer>
   );
 }

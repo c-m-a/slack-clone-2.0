@@ -10,6 +10,14 @@
 
 :root {
   --slack-color: #350d36;
+
+  --chat-form-border-color: #616061;
+  --chat-icons-color: #5e5e5e;
+  --chat-icons-color-hover: #1d1d1d;
+  --chat-icons-bg-color: #f8f8f8;
+  --divider-color: #e4e4e4;
+  --chat-header-border-color: var(--divider-color);
+  --chat-form-divider-color: var(--divider-color);
   --header-color: #d6ced6;
   --header-bg-color: var(--slack-color);
   --header-search-bg-color: #431e44;
@@ -31,6 +39,6 @@ html {
 body {
   overflow: hidden;
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.6rem; /* 16px  1.6 * font-size = 10px */
+  font-size: 1.6rem; /* 16px = 1.6 * root font-size */
 }
 
