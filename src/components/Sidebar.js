@@ -1,6 +1,19 @@
 import styled from 'styled-components';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+
+import AddIcon from '@material-ui/icons/Add';
+import AppsIcon from '@material-ui/icons/Apps';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import CreateIcon from '@material-ui/icons/Create';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import InboxIcon from '@material-ui/icons/Inbox';
+import InsertCommentIcon from '@material-ui/icons/InsertComment';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+
+import SidebarOption from './SidebarOption';
 
 export default function Sidebar() {
   return (
@@ -15,6 +28,19 @@ export default function Sidebar() {
         </SidebarInfo>
         <CreateIcon />
       </SidebarHeader>
+
+      <SidebarOption Icon={InsertCommentIcon} title="Threads" />
+      <SidebarOption Icon={InboxIcon} title="Mentions & reactions" />
+      <SidebarOption Icon={DraftsIcon} title="Saved items" />
+      <SidebarOption Icon={BookmarkBorderIcon} title="Channel browser" />
+      <SidebarOption Icon={PeopleAltIcon} title="People & user groups" />
+      <SidebarOption Icon={AppsIcon} title="Apps" />
+      <SidebarOption Icon={FileCopyIcon} title="File browser" />
+      <SidebarOption Icon={ExpandLessIcon} title="Show less" />
+      <hr />
+      <SidebarOption Icon={ExpandMoreIcon} title="Channel" />
+      <hr />
+      <SidebarOption Icon={AddIcon} addChannelOption title="Add Channel" />
     </SidebarContainer>
   );
 }
@@ -24,15 +50,20 @@ const SidebarContainer = styled.div`
   height: 100%;
   color: var(--sidebar-color);
   background-color: var(--sidebar-bg-color);
+
+  > hr {
+    border: .1rem solid var(--sidebar-header-border-color);
+  }
 `;
 
 const SidebarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  margin-bottom: 1.2rem;
   padding: 1.3rem;
-  border-top: .1rem var(--sidebar-header-border-color) solid;
-  border-bottom: .1rem var(--sidebar-header-border-color) solid;
+  border-top: .1rem solid var(--sidebar-header-border-color);
+  border-bottom: .1rem solid var(--sidebar-header-border-color);
 
   :hover {
     background-color: var(--slack-color);
