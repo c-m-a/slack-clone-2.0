@@ -11,6 +11,8 @@
 :root {
   --slack-color: #350d36;
 
+  --chat-header-height: 6.65rem;
+  --chat-form-height: 10rem;
   --chat-form-border-color: #616061;
   --chat-icons-color: #5e5e5e;
   --chat-icons-color-hover: #1d1d1d;
@@ -18,6 +20,9 @@
   --divider-color: #e4e4e4;
   --chat-header-border-color: var(--divider-color);
   --chat-form-divider-color: var(--divider-color);
+  --header-height: 3.8rem;
+  --elements: calc(var(--chat-header-height) + var(--header-height) + var(--chat-form-height));
+  --chat-messages-height: calc(100vh - var(--elements));
   --header-color: #d6ced6;
   --header-bg-color: var(--slack-color);
   --header-search-bg-color: #431e44;
