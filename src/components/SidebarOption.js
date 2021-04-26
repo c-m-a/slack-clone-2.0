@@ -1,8 +1,33 @@
 import styled from 'styled-components';
 
-  export default function SidebarOption({ Icon, addChannelOption, title }) {
+import { db } from '../firebase';
+
+export default function SidebarOption({ addChannelOption, Icon, id, title }) {
+
+  const addChannel = () => {
+    const channelName = prompt('Please enter the channel name');
+
+    if (channelName) {
+      db.collection('rooms')
+        .add({
+          name: channelName
+        })
+        .then(() => {
+          console.log('Channel saved!');
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+  };
+
+  const selectChannel = () => {
+  };
+
   return (
-    <SidebarOptionContainer>
+    <SidebarOptionContainer
+      onClick={addChannelOption ? addChannel : selectChannel}
+    >
       {Icon && <Icon />}
       {Icon ? (
         <h3>{title}</h3>
@@ -38,4 +63,8 @@ const SidebarOptionContainer = styled.div`
 
 const SidebarOptionChannel = styled.div`
   font-size: 1.5rem;
+
+  > span {
+    margin-left: 1.2rem;
+  }
 `;
