@@ -22,7 +22,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase';
 
 export default function Sidebar() {
-  const [channels, loading, error] = useCollection(db.collection('rooms'));
+  const [channels] = useCollection(db.collection('rooms'));
   const [user] = useAuthState(auth);
 
   return (
