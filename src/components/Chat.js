@@ -1,9 +1,11 @@
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { selectRoomId } from '../features/appSlice';
 
 import styled from 'styled-components';
 
 import ChatForm from './ChatForm';
+import Message from './Message';
 
 import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
@@ -12,18 +14,29 @@ import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { db } from '../firebase';
 
 export default function Chat() {
+  const chatBottomRef = useRef(null);
   const roomId = useSelector(selectRoomId);
   const [roomDetails] = useDocument(
     roomId && db.collection('rooms').doc(roomId)
   );
 
-  const [roomMessages] = useDocument(
+  const [roomMessages, loading] = useDocument(
     roomId &&
     db.collection('rooms')
       .doc(roomId)
       .collection('messages')
       .orderBy('timestamp', 'asc')
   );
+
+  const scrollChatToBottom = () => {
+    chatBottomRef?.current?.scrollIntoView({
+      behavior: 'smooth'
+    });
+  };
+
+  useEffect(() => {
+    scrollChatToBottom();
+  }, [roomId, loading]);
 
   return (
     <ChatContainer>
@@ -36,18 +49,35 @@ export default function Chat() {
           <InfoOutlinedIcon />
         </HeaderRight>
       </ChatHeader>
-      <ChatMessages>
-        Messages
+      <ChatMessages
+      >
+        {roomMessages?.docs.map(doc => {
+          const { message, timestamp, user, userImage } = doc.data();
+          return (
+            <Message
+              key={doc.id}
+              message={message}
+              timestamp={timestamp}
+              user={user}
+              userImage={userImage}
+            />
+          )
+        })}
+        <ChatBottom
+          ref={chatBottomRef}
+        />
       </ChatMessages>
       <ChatForm
         channelId={roomId}
         channelName={roomDetails?.data().name}
+        chatBottomRef={chatBottomRef}
       />
     </ChatContainer>
   );
 }
 
 const ChatContainer = styled.div`
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -59,7 +89,7 @@ const ChatHeader = styled.div`
   align-items: center;
   padding-left: 2.2rem;
   padding-right: 2.6rem;
-  height: 6.65rem;
+  height: var(--chat-header-height);
   border-bottom: .1rem solid var(--chat-header-border-color);
 `;
 
@@ -86,7 +116,9 @@ const HeaderRight = styled.div`
 `;
 
 const ChatMessages = styled.div`
-  flex: 1;
+  height: calc(var(--chat-messages-height) - 1rem);
+  padding: 1rem 2rem;
   overflow-y: scroll;
 `;
 
+const ChatBottom = styled.div``;

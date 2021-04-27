@@ -36,7 +36,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   align-items: center;
   background-color: var(--header-bg-color);
-  height: 3.8rem;
+  height: var(--header-height);
 `;
 
 const HeaderLeft = styled.div`

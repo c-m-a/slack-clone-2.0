@@ -21,7 +21,7 @@ import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import { db } from '../firebase';
 import firebase from 'firebase';
 
-export default function ChatForm({ channelName, channelId }) {
+export default function ChatForm({ channelName, channelId, chatBottomRef }) {
   const [input , setInput] = useState('');
 
   const sendMessage = e => {
@@ -42,6 +42,9 @@ export default function ChatForm({ channelName, channelId }) {
       })
       .then(() => {
         console.log(`Message saved!!`);
+        chatBottomRef?.current?.scrollIntoView({
+          behavior: 'smooth'
+        });
       })
       .catch(err => console.error(err));
 
@@ -85,11 +88,14 @@ export default function ChatForm({ channelName, channelId }) {
 }
 
 const ChatFormContainer = styled.div`
+  position: absolute;
+  width: calc(100% - 4rem); /* width - left and right padding */
+  bottom: 0;
   height: 8rem;
-  margin: 0 2rem 2.4rem 2rem;
   border: .1rem solid var(--chat-form-border-color);
   border-radius: .5rem;
   padding: .1rem .3rem;
+  margin: 0 2rem 2rem 2rem;
 
   form {
     height: 100%;
