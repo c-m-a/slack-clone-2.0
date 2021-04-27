@@ -18,11 +18,13 @@ import TextFormatIcon from '@material-ui/icons/TextFormat';
 import SendIcon from '@material-ui/icons/Send';
 import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 
-import { db } from '../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { db, auth } from '../firebase';
 import firebase from 'firebase';
 
 export default function ChatForm({ channelName, channelId, chatBottomRef }) {
   const [input , setInput] = useState('');
+  const [user] = useAuthState(auth);
 
   const sendMessage = e => {
     e.preventDefault();   // Prevents refresh
@@ -37,8 +39,8 @@ export default function ChatForm({ channelName, channelId, chatBottomRef }) {
       .add({
         message: input,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        user: 'Cma',
-        userImage: null
+        user: user.displayName,
+        userImage: user.photoURL
       })
       .then(() => {
         console.log(`Message saved!!`);

@@ -18,8 +18,12 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
 import SidebarOption from './SidebarOption';
 
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase';
+
 export default function Sidebar() {
   const [channels, loading, error] = useCollection(db.collection('rooms'));
+  const [user] = useAuthState(auth);
 
   return (
     <SidebarContainer>
@@ -28,7 +32,7 @@ export default function Sidebar() {
           <h2>SLACK 2.0</h2>
           <h3>
             <FiberManualRecordIcon />
-            Cma
+            {user.displayName}
           </h3>
         </SidebarInfo>
         <CreateIcon />
