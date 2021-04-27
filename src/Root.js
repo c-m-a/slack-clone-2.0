@@ -4,18 +4,26 @@ import {
   Route,
 } from "react-router-dom";
 
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from './firebase';
+
 import App from './components/App';
+import Login from './components/auth/Login.js';
 
 export default function Root() {
+  const [user, loading] = useAuthState(auth);
+
   return (
     <Router>
-      <div>
+      {!user ? (
+        <Login />
+      ) : (
         <Switch>
           <Route exact path="/">
             <App />
           </Route>
         </Switch>
-      </div>
+      )}
     </Router>
   );
 }

@@ -22,6 +22,8 @@
   --chat-form-divider-color: var(--divider-color);
   --header-height: 3.8rem;
   --elements: calc(var(--chat-header-height) + var(--header-height) + var(--chat-form-height));
+  --login-bg-color: #f8f8f8;
+  --login-button-bg-color: #0a8d48;
   --chat-messages-height: calc(100vh - var(--elements));
   --header-color: #d6ced6;
   --header-bg-color: var(--slack-color);
